@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model holiday {
+  id           Int      @id(map: "holiday_id") @default(autoincrement())
+  date         DateTime @db.Date
+  holiday_name String   @db.VarChar(256)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model login {
+  username String @db.VarChar(50)
+
+  @@ignore
+}
+
+model penjualan {
+  id          Int     @id(map: "penjualan_id") @default(autoincrement())
+  cabang      String  @db.VarChar(256)
+  bulan       String  @db.VarChar(20)
+  total_biaya Decimal @db.Decimal
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model view_invoice_v1 {
+  tahun_periode    Int
+  bulan_periode    Int     @db.SmallInt
+  location         String  @db.VarChar(25)
+  category         String  @db.VarChar(25)
+  salesman         String
+  invoice_value    Decimal @db.Decimal
+  invoice_quantity Decimal @db.Decimal
+
+  @@ignore
+}
+
+model books {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar
+  subtitle  String   @db.VarChar
+  author_id Int?
+  authors   authors? @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model authors {
+  id            Int      @id @default(autoincrement())
+  name          String   @db.VarChar
+  date_of_birth DateTime @db.Timestamptz(6)
+  books         books[]
+  flms          flms[]
+}
+
+model flms {
+  id        Int     @id @default(autoincrement())
+  title     String  @db.VarChar
+  genre     String  @db.VarChar
+  author_id Int
+  authors   authors @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

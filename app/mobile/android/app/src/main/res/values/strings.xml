@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Petroport Operator</string>
+    <string name="title_activity_main">Petroport Operator</string>
+    <string name="package_name">com.andromedia.petroport.operator</string>
+    <string name="custom_url_scheme">com.andromedia.petroport.operator</string>
+</resources>

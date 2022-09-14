@@ -1,0 +1,61 @@
+{
+  "license": "MIT",
+  "name": "react-konva",
+  "private": true,
+  "description": "React binding to canvas element via Konva framework",
+  "version": "17.0.2-5",
+  "keywords": [
+    "react",
+    "canvas",
+    "jsx",
+    "konva"
+  ],
+  "bugs": "https://github.com/konvajs/react-konva/issues",
+  "main": "lib/ReactKonva.js",
+  "module": "es/ReactKonva.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:konvajs/react-konva.git"
+  },
+  "dependencies": {
+    "react-reconciler": "~0.26.2",
+    "scheduler": "^0.20.2",
+    "konva": "workspace:^",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/lavrton"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/konva"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/lavrton"
+    }
+  ],
+  "scripts": {
+    "build": "nwb build-react-component && cp ./ReactKonvaCore.d.ts ./lib && cp ./ReactKonvaCore.d.ts ./es",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react && npm run test:typings",
+    "test:typings": "tsc --noEmit",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server",
+    "preversion": "npm test",
+    "version": "npm run build",
+    "postversion": ""
+  },
+  "typings": "react-konva.d.ts",
+  "files": [
+    "README.md",
+    "lib",
+    "es",
+    "react-konva.d.ts",
+    "ReactKonvaCore.d.ts"
+  ]
+}
